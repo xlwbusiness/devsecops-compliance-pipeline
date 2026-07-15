@@ -19,7 +19,7 @@ apt update && apt upgrade -y
 apt install curl -y
 curl --version
 apt install unzip -y
-unzip --version
+unzip -v
 apt install software-properties-common -y
 add-apt-repository ppa:git-core/ppa -y
 apt install git -y
