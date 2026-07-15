@@ -38,6 +38,8 @@ apt update
 # Think: Analyze the risk of enabling ufw in a script that runs unattended if I get the rules wrong.
 # Also think about avoiding lockout given accessing this via SSM and not SSH
 ufw --force reset
+ufw allow OpenSSH
+ufw allow 22/tcp
 ufw default deny incoming
 ufw default allow outgoing
 ufw --force enable
