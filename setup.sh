@@ -23,7 +23,7 @@ unzip --version
 apt install software-properties-common -y
 add-apt-repository ppa:git-core/ppa -y
 apt install git -y
-git --version
+git --version || echo "WARNING: Unable to determine git version." >> "$LOGFILE"
 apt install ca-certificates -y
 dpkg -l | grep ca-certificates
 apt install gnupg -y
@@ -67,7 +67,7 @@ apt update
 #Install the Docker packages
 apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 systemctl start docker
-systemctl id-active --quiet docker
+systemctl is-active --quiet docker
 echo "Docker service is running"
 
 # Allow non-root user to run commands using Docker
@@ -129,5 +129,11 @@ chmod 700 get_helm.sh
 helm version
 
 # --- Step 8: Verify completion ---
+command -v docker >/dev/null
+command -v aws >/dev/null
+command -v terraform >/dev/null
+command -v kubectl >/dev/null
+command -v helm >/dev/null
+
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Setup completed successfully." | tee -a "$LOGFILE"
 exit 0
